@@ -45,9 +45,8 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _performLogin() async {
-    final username = state.username;
+    Username? username = state.username;
     Password? password = state.password;
-
     emit(
       state.copyWith(
         isSubmitting: true,
@@ -55,7 +54,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
     final loginResult = await _loginFacade.signInWithUsernameAndPassword(
-            username: username, password: password);
+        username: username, password: password);
 
     if (loginResult.isLeft()) {
       return loginResult.fold((failure) {
