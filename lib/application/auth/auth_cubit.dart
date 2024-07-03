@@ -23,12 +23,17 @@ class AuthCubit extends Cubit<AuthState> {
     // }
     dynamic userDoc;
     if (userOption.isSome()) {
-      userDoc = await _loginFacade.getUser();
+      userDoc = await _loginFacade.getUser(userOption);
     }
+
     emit(userOption.fold(
       () => const AuthState.unauthenticated(),
       (a) {
-        return AuthState.authenticated(userDoc);
+        if (userDoc != null) {
+          return AuthState.authenticated(userDoc);
+        } else {
+          return const AuthState.unauthenticated();
+        }
       },
     ));
   }

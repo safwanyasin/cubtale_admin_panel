@@ -6,6 +6,7 @@ class AppColors {
   static const Color translucentColor = Color(0xFFDDF1EC);
   static const Color fontColor = Color(0xFF1F5066);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color errorText = Color(0xFF21aaa8);
   // private constructor
   AppColors._();
 }

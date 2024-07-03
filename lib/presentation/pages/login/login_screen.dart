@@ -5,6 +5,7 @@ import 'package:cubtale_challenge/presentation/pages/login/widgets/nav_bar.dart'
 import 'package:cubtale_challenge/presentation/reusable_components/buttons/primary_button.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/error_popup.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/input/input_fields.dart';
+import 'package:cubtale_challenge/presentation/routing/router/router.dart';
 import 'package:cubtale_challenge/presentation/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -45,23 +46,25 @@ class LoginScreen extends StatelessWidget {
                         () {},
                         (either) => either.fold((failure) {
                           showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return ErrorPopup(
-                                errorMessage: failure.map(
-                                  cancelledByUser: (_) => 'Operation cancelled',
-                                  serverError: (_) => 'Server error',
-                                  invalidUsernameAndPasswordCombination: (_) =>
-                                      'Email or password are incorrect!',
-                                  otherFailure: (_) =>
-                                      'An unexpected error occurred!',
-                                ),
-                                onClose: () => Navigator.of(context).pop(),
-                              );
-                            }
-                          );
+                              context: context,
+                              builder: (BuildContext context) {
+                                return ErrorPopup(
+                                  errorMessage: failure.map(
+                                    cancelledByUser: (_) =>
+                                        'Operation cancelled',
+                                    serverError: (_) => 'Server error',
+                                    invalidUsernameAndPasswordCombination:
+                                        (_) =>
+                                            'Email or password are incorrect!',
+                                    otherFailure: (_) =>
+                                        'An unexpected error occurred!',
+                                  ),
+                                  onClose: () => Navigator.of(context).pop(),
+                                );
+                              });
                         }, (_) {
                           print('login successful');
+                          AutoRouter.of(context).replace(const HomeRoute());
                         }),
                       );
                     }, builder: (context, state) {
@@ -94,6 +97,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 20.h),
                             InputField(
+                              obscureText: true,
                               showError: state.isSubmitting,
                               labelText: 'Password',
                               onChanged: (password) => context
@@ -117,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                                 onPressed: () {
                                   //if (_formKey.currentState!.validate()) {
 
-                                    context.read<LoginCubit>().login();
+                                  context.read<LoginCubit>().login();
                                   //}
                                 },
                                 text: 'Login'),
