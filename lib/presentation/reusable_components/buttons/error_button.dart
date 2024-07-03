@@ -19,16 +19,17 @@ class ErrorButton extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           child: Container(
+            
             padding: EdgeInsets.only(left: 20.w, top: 10.w, right: 20.w, bottom: 10.w),
             decoration: BoxDecoration(
-              // color: Theme.of(context).focusColor,
+              color: Theme.of(context).cardColor,
               border: Border.all(
                   color: Theme.of(context).indicatorColor, width: 5.w),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.w),
+                  topLeft: Radius.circular(40.w),
                   topRight: Radius.circular(10.w),
-                  bottomLeft: Radius.circular(20.w),
-                  bottomRight: Radius.circular(20.w)),
+                  bottomLeft: Radius.circular(40.w),
+                  bottomRight: Radius.circular(40.w)),
             ),
             child: Center(
               child: Text(

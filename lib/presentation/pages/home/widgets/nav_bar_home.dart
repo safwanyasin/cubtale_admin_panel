@@ -1,10 +1,12 @@
+import 'package:cubtale_challenge/presentation/pages/home/widgets/profile_dropdown.dart';
 import 'package:cubtale_challenge/presentation/pages/login/widgets/theme_button.dart';
+import 'package:cubtale_challenge/presentation/reusable_components/buttons/nav_bar_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NavBarHome extends StatelessWidget {
-  const NavBarHome({super.key});
+  NavBarHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +32,18 @@ class NavBarHome extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              
+              NavBarButton(onPressed: () {}, text: "Search by Mail"),
+              Image.asset('assets/images/vertical_divider.png', height: 60.h),
+              NavBarButton(onPressed: () {}, text: "Search by ID"),
+              Image.asset('assets/images/vertical_divider.png', height: 60.h),
+              NavBarButton(onPressed: () {}, text: "Search by Date"),
             ],
-          )
+          ),
+          // InkWell(
+          //   onTap: () {},
+          //   child: Image.asset('assets/images/menu_burger.png', height: 60.h),
+          // )
+          
         ],
       ),
     );

@@ -15,6 +15,7 @@ class AppTheme {
       focusColor: AppColors.primaryColor, // Main color
       disabledColor: AppColors.translucentColor,
       primaryColor: AppColors.primaryColor, // Secondary color\
+      primaryColorDark: AppColors.navItemsColor,
       primaryColorLight: AppColors.translucentColor,
       indicatorColor: const Color.fromARGB(255, 210, 80, 71),
       appBarTheme: AppBarTheme(
@@ -56,14 +57,14 @@ class AppTheme {
           color: AppColors.secondaryColor,
         ),
         bodyMedium: GoogleFonts.quicksand(
-          fontSize: 12.w,
+          fontSize: 25.w,
           fontWeight: FontWeight.w600, // Regular
-          color: AppColors.secondaryColor,
-        ),
+          color: AppColors.navItemsColor,
+        ), // used
         bodySmall: GoogleFonts.quicksand(
-            fontSize: 15.w,
-            fontWeight: FontWeight.bold,
-            color: AppColors.primaryColor),
+            fontSize: 25.w,
+            fontWeight: FontWeight.w400,
+            color: AppColors.fontColor), // used
         labelLarge: GoogleFonts.quicksand(
           fontSize: 30.w,
           fontWeight: FontWeight.bold, // Bold
@@ -73,12 +74,12 @@ class AppTheme {
           fontSize: 20.w,
           fontWeight: FontWeight.w600, // Bold
           color: AppColors.fontColor,
-        ),
+        ), // used
         labelSmall: GoogleFonts.quicksand(
           fontSize: 20.w,
           fontWeight: FontWeight.bold,
           color: AppColors.fontColor,
-        ),
+        ), // used
         titleLarge: GoogleFonts.quicksand(
           fontSize: 15.w,
           fontWeight: FontWeight.bold, // Bold

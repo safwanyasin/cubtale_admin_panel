@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cubtale_challenge/application/auth/auth_cubit.dart';
 import 'package:cubtale_challenge/application/auth/login/login_cubit.dart';
 import 'package:cubtale_challenge/injection.dart';
 import 'package:cubtale_challenge/presentation/pages/login/widgets/nav_bar.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/buttons/primary_button.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/error_popup.dart';
-import 'package:cubtale_challenge/presentation/reusable_components/input/input_fields.dart';
+import 'package:cubtale_challenge/presentation/reusable_components/input/input_field.dart';
 import 'package:cubtale_challenge/presentation/routing/router/router.dart';
 import 'package:cubtale_challenge/presentation/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class LoginScreen extends StatelessWidget {
         body: Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      color: AppColors.white,
+      color: Theme.of(context).cardColor,
       child: Column(
         children: [
           const NavBar(),
@@ -64,6 +65,7 @@ class LoginScreen extends StatelessWidget {
                               });
                         }, (_) {
                           print('login successful');
+                          context.read<AuthCubit>().authCheckRequested();
                           AutoRouter.of(context).replace(const HomeRoute());
                         }),
                       );

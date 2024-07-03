@@ -26,8 +26,10 @@ class ApiLoginFacade implements ILoginFacade {
       final storedTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
       final now = DateTime.now();
       if (now.difference(storedTime) <= expirationDuration) {
+        print("attempting ot get the username");
         final username = prefs.getString('username');
         final password = prefs.getString('password');
+        print("the username is " + username!);
         return optionOf({
           'username': username,
           'password': password,
@@ -63,6 +65,7 @@ class ApiLoginFacade implements ILoginFacade {
         return left(const LoginFailure.invalidUsernameAndPasswordCombination());
       } else {
         final prefs = await SharedPreferences.getInstance();
+        print('setting username as ' + usernameStr);
         await prefs.setString('username', usernameStr);
         await prefs.setString('password', passwordStr);
         await prefs.setInt('timestamp', DateTime.now().millisecondsSinceEpoch);
@@ -82,14 +85,14 @@ class ApiLoginFacade implements ILoginFacade {
   // }
   // gets snapshot of the user
   @override
-  Future<dynamic> getUser(dynamic userCredentials) async {
+  Future<dynamic> getUser(String username, String password) async {
      try {
       final dio = Dio();
       final Response response = await dio.get(
         "https://p7y0pin0cl.execute-api.us-east-2.amazonaws.com/default/AdminPanelLogin",
         data: {
-          'username': userCredentials.username,
-          'password': userCredentials.password,
+          'username': username,
+          'password': password,
         },
       );
       final data = jsonDecode(response.data);

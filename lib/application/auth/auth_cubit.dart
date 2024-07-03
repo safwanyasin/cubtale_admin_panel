@@ -22,9 +22,17 @@ class AuthCubit extends Cubit<AuthState> {
     //   }
     // }
     dynamic userDoc;
+    String username = '';
+    String password = '';
     if (userOption.isSome()) {
-      userDoc = await _loginFacade.getUser(userOption);
+      userOption.fold(() {}, (a) { 
+        username = a['username'];
+        password = a['password'];
+      });
+      userDoc = await _loginFacade.getUser(username, password);
     }
+    print('doing authcheck');
+    print('usernm is' + username);
 
     emit(userOption.fold(
       () => const AuthState.unauthenticated(),

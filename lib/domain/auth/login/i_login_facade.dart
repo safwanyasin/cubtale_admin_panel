@@ -12,5 +12,5 @@ abstract class ILoginFacade {
     required Password password,
   });
   Future<void> signOut();
-  Future<dynamic> getUser(dynamic userCredentials); // TODO: replace dynamic with appropriate type
+  Future<dynamic> getUser(String username, String password); // TODO: replace dynamic with appropriate type
 }
