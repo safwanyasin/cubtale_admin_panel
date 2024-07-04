@@ -36,6 +36,7 @@ class SearchCubit extends Cubit<SearchState> {
 
     // do the remaining stuff
     String searchTerm = state.searchTerm.getOrCrash();
+    print('search term: ' + searchTerm);
     final possibleFailure;
     if (type == 'Mail') {
       possibleFailure = await _searchRepository.findByMail(searchTerm);

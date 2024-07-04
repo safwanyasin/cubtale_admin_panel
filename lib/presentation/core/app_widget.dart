@@ -1,4 +1,5 @@
 import 'package:cubtale_challenge/application/auth/auth_cubit.dart';
+import 'package:cubtale_challenge/application/search/search_cubit.dart';
 import 'package:cubtale_challenge/constants.dart';
 import 'package:cubtale_challenge/injection.dart';
 import 'package:cubtale_challenge/presentation/routing/router/router.dart';
@@ -22,6 +23,9 @@ class AppWidget extends StatelessWidget {
           create: (context) => getIt<AuthCubit>()..authCheckRequested(),
           // create: (context) => getIt<AiGenerateCubit>()..
         ),
+        BlocProvider(
+          create: (context) => getIt<SearchCubit>()
+        )
       ],
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),

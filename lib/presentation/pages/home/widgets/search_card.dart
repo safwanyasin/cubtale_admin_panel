@@ -5,13 +5,16 @@ import 'package:cubtale_challenge/presentation/reusable_components/input/search_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class SearchCard extends StatelessWidget {
-  const SearchCard({Key? key, required this.label, required this.type})
+  SearchCard({Key? key, required this.label, required this.type})
       : super(key: key);
 
   final String label;
   final String type;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,23 +75,29 @@ class SearchCard extends StatelessWidget {
                 ),
               );
             }, builder: (context, state) {
-              return Row(
-                children: [
-                  Expanded(
-                    child: SearchInput(
-                      onChanged: (searchTerm) => context
-                          .read<SearchCubit>()
-                          .updateSearchTerm(searchTerm),
-                      validator: (_) {},
+              return Form(
+                key: _formKey,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SearchInput(
+                        onChanged: (searchTerm) => context
+                            .read<SearchCubit>()
+                            .updateSearchTerm(searchTerm),
+                        validator: (_) {},
+                        type: type,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 30.w),
-                  PrimaryButton(
-                      onPressed: () {
-                        context.read<SearchCubit>().search(type);
-                      },
-                      text: 'Search')
-                ],
+                    SizedBox(width: 30.w),
+                    PrimaryButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<SearchCubit>().search(type);
+                          }
+                        },
+                        text: 'Search')
+                  ],
+                ),
               );
             }),
             SizedBox(height: 500.h),
