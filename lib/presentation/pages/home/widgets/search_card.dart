@@ -1,4 +1,6 @@
 import 'package:cubtale_challenge/application/search/search_cubit.dart';
+import 'package:cubtale_challenge/presentation/pages/home/widgets/result_card.dart';
+import 'package:cubtale_challenge/presentation/pages/home/widgets/result_list.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/buttons/primary_button.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/error_popup.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/input/search_input.dart';
@@ -70,7 +72,9 @@ class SearchCard extends StatelessWidget {
                         });
                   },
                   (success) {
-                    context.read<SearchCubit>().reset();
+                    // context.read<SearchCubit>().reset();
+                    print('success hehe');
+                    print(success);
                   },
                 ),
               );
@@ -100,7 +104,65 @@ class SearchCard extends StatelessWidget {
                 ),
               );
             }),
-            SizedBox(height: 500.h),
+            BlocBuilder<SearchCubit, SearchState>(
+              builder: (context, state) =>
+                  state.searchFailureOrSuccessOption.fold(
+                () => SizedBox(
+                  height: 500.h,
+                  child: const Center(child: Text('Enter a query to search')),
+                ),
+                (either) {
+                  print('kkkk');
+                  return either.fold(
+                    (failure) {
+                      return Container(
+                        height: 500.h,
+                        child: Center(
+                          child: Text(
+                            failure.map(
+                              unexpected: (_) {
+                                return 'An unexpected error occurred';
+                              },
+                              unableToUpdate: (_) {
+                                return 'Unable to update';
+                              },
+                              insufficientPermissions: (_) {
+                                return "You don't have sufficient permissions to carry out this action";
+                              },
+                              otherFailure: (_) {
+                                return 'An unexpected error occurred!';
+                              },
+                            ),
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ),
+                      );
+                    },
+                    (success) {
+                      print('successs');
+                      return type == 'Date'
+                          ? Container(
+                            height: 500.h,
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 10.h),
+                                child: ResultList(users: success['users']),
+                              ),
+                            )
+                          : Container(
+                              // child: Text(success['users'][0]['acc_id'].toString()),
+                              child: success['users'].length == 0
+                                  ? SizedBox(
+                                      height: 500.h,
+                                      child: const Center(
+                                          child: Text('No users found')),
+                                    )
+                                  : ResultCard(details: success['users'][0]),
+                            );
+                    },
+                  );
+                },
+              ),
+            ),
           ],
         ));
   }

@@ -48,5 +48,38 @@ class SearchCubit extends Cubit<SearchState> {
       possibleFailure = await _searchRepository.findByDate(searchTerm);
       print(possibleFailure);
     }
+
+    if (possibleFailure.isLeft()) {
+      return possibleFailure.fold((failure) {
+        failure.maybeWhen(
+            unexpected: () => emit(
+                  state.copyWith(
+                    isSubmitting: false,
+                    searchFailureOrSuccessOption: some(
+                      left(
+                        const SearchFailure.unexpected(),
+                      ),
+                    ),
+                  ),
+                ),
+            orElse: () => emit(
+                  state.copyWith(
+                    isSubmitting: false,
+                    searchFailureOrSuccessOption: some(
+                      left(
+                        const SearchFailure.unexpected(),
+                      ),
+                    ),
+                  ),
+                ));
+      }, (_) {});
+    } else {
+      possibleFailure.fold((_) {}, (result) {
+        emit(state.copyWith(
+          isSubmitting: false,
+          searchFailureOrSuccessOption: some(right(result)),
+        ));
+      });
+    }
   }
 }
