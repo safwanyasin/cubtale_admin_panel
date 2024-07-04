@@ -33,22 +33,28 @@ class _InputState extends State<SearchInput> {
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       Container(
+        height: 90.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.w),
           color: Theme.of(context).primaryColor,
         ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: TextFormField(
-            onChanged: widget.onChanged,
-            obscureText: widget.obscureText,
-            //controller: widget.controller,
-            style: Theme.of(context).textTheme.titleMedium,
-            validator: widget.validator,
-            decoration: InputDecoration(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 0),
+            child: TextFormField(
+              onChanged: widget.onChanged,
+              obscureText: widget.obscureText,
+              //controller: widget.controller,
+              style: Theme.of(context).textTheme.titleMedium,
+              validator: widget.validator,
+              decoration: InputDecoration(
                 hintText: widget.hintText,
                 border: InputBorder.none,
-                hintStyle: Theme.of(context).textTheme.titleMedium),
+                hintStyle: Theme.of(context).textTheme.titleMedium,
+                isCollapsed: true,
+                contentPadding: EdgeInsets.all(10.h),
+              ),
+            ),
           ),
         ),
       ),

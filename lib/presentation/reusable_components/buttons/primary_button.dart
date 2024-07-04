@@ -16,9 +16,9 @@ class PrimaryButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 70.h,
-        // padding: EdgeInsets.all(20.w),
+        // width: MediaQuery.of(context).size.width,
+        height: 90.h,
+        padding: EdgeInsets.only(left: 20.w, right: 20.w),
         decoration: BoxDecoration(
           color: Theme.of(context).focusColor,
           borderRadius: BorderRadius.circular(20.w),

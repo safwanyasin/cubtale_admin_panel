@@ -10,6 +10,7 @@ class AppTheme {
         primarySwatch: Colors.blueGrey, // Set your primary color
         accentColor: Colors.blueGrey, // Set your accent color
       ),
+      highlightColor: AppColors.fontColor, //
       cardColor: AppColors.white,
       canvasColor: AppColors.primaryColor,
       focusColor: AppColors.primaryColor, // Main color
@@ -37,9 +38,9 @@ class AppTheme {
           color: AppColors.secondaryColor,
         ),
         headlineLarge: GoogleFonts.quicksand(
-          fontSize: 20.w,
-          fontWeight: FontWeight.w600, // Semibold
-          color: AppColors.secondaryColor,
+          fontSize: 40.w,
+          fontWeight: FontWeight.w900, 
+          color: AppColors.fontColor,
         ),
         headlineMedium: GoogleFonts.quicksand(
           fontSize: 18.w,

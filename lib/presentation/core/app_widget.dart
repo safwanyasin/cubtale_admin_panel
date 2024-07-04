@@ -26,7 +26,7 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),
         debugShowCheckedModeBanner: false,
-        title: 'Book AI',
+        title: 'Cubtale Admin Panel',
         theme: AppTheme.darkTheme(),
         themeMode: ThemeMode.system,
         //home: const TestingScreen()

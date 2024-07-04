@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
           },
           unauthenticated: (_) async {
             AutoRouter.of(context).replace(
-              HomeRoute(),
+              LoginRoute(),
             );
           },
         );
