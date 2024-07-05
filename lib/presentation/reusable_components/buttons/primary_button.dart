@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
         height: 90.h,
         padding: EdgeInsets.only(left: 20.w, right: 20.w),
         decoration: BoxDecoration(
-          color: Theme.of(context).focusColor,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(20.w),
         ),
         child: Center(
