@@ -1,6 +1,3 @@
-// ignore_for_file: unnecessary_null_comparison
-
-import 'dart:ui';
 import 'package:cubtale_challenge/application/search/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +33,7 @@ class SearchInput extends StatefulWidget {
 class _InputState extends State<SearchInput> {
   late TextEditingController _controller;
 
+  // ignore: prefer_function_declarations_over_variables
   final validator = (String? value) {
     if (value == null || value.isEmpty) {
       return 'Date cannot be empty';
@@ -72,7 +70,7 @@ class _InputState extends State<SearchInput> {
             child: TextFormField(
               controller: _controller,
               onTap: () async {
-                print(widget.type);
+                // print(widget.type);
                 if (widget.type == 'Date') {
                   final selectedDate = await showDatePicker(
                     context: context,
@@ -85,7 +83,8 @@ class _InputState extends State<SearchInput> {
                         DateFormat('dd-MM-yyyy').format(selectedDate);
                     _controller.text = formattedDate; // Update the text field
                     widget.onChanged(formattedDate);
-                    print(formattedDate);
+                    // print(formattedDate);
+                    // ignore: use_build_context_synchronously
                     context.read<SearchCubit>().updateSearchTerm(formattedDate);
                   }
                 }

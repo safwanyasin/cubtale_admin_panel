@@ -7,7 +7,6 @@ import 'package:cubtale_challenge/presentation/reusable_components/input/search_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class SearchCard extends StatelessWidget {
   SearchCard({Key? key, required this.label, required this.type})
@@ -29,7 +28,7 @@ class SearchCard extends StatelessWidget {
         padding: EdgeInsets.all(30.w),
         child: Column(
           children: [
-            Text('Search by ' + type,
+            Text('Search by $type',
                 style: Theme.of(context).textTheme.headlineLarge),
             SizedBox(height: 20.h),
             Align(
@@ -73,8 +72,7 @@ class SearchCard extends StatelessWidget {
                   },
                   (success) {
                     // context.read<SearchCubit>().reset();
-                    print('success hehe');
-                    print(success);
+                    // print(success);
                   },
                 ),
               );
@@ -88,6 +86,7 @@ class SearchCard extends StatelessWidget {
                         onChanged: (searchTerm) => context
                             .read<SearchCubit>()
                             .updateSearchTerm(searchTerm),
+                        // ignore: body_might_complete_normally_nullable
                         validator: (_) {},
                         type: type,
                       ),
@@ -112,10 +111,9 @@ class SearchCard extends StatelessWidget {
                   child: const Center(child: Text('Enter a query to search')),
                 ),
                 (either) {
-                  print('kkkk');
                   return either.fold(
                     (failure) {
-                      return Container(
+                      return SizedBox(
                         height: 500.h,
                         child: Center(
                           child: Text(
@@ -139,10 +137,9 @@ class SearchCard extends StatelessWidget {
                       );
                     },
                     (success) {
-                      print('successs');
                       return type == 'Date'
-                          ? Container(
-                            height: 500.h,
+                          ? SizedBox(
+                              height: 500.h,
                               child: Padding(
                                 padding: EdgeInsets.only(top: 10.h),
                                 child: ResultList(users: success['users']),

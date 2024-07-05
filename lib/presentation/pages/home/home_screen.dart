@@ -1,13 +1,12 @@
 import 'package:cubtale_challenge/application/auth/auth_cubit.dart';
 import 'package:cubtale_challenge/application/search/search_cubit.dart';
-import 'package:cubtale_challenge/injection.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/main_page.dart';
-import 'package:cubtale_challenge/presentation/pages/home/widgets/nav_bar_home.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/profile_dropdown.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/search_page.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/buttons/nav_bar_button.dart';
 import 'package:cubtale_challenge/presentation/routing/router/router.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool showMenu = false;
-  Widget _body = MainPage();
+  Widget _body = const MainPage();
   final List<Widget> _screens = [
     const SearchPage(type: 'Mail'),
     const SearchPage(type: 'ID'),
@@ -70,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               InkWell(
                                 onTap: () {
                                   setState(() {
-                                    _body = MainPage();
+                                    _body = const MainPage();
                                   });
                                 },
                                 child: Row(
@@ -140,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 showMenu
                     ? Positioned(
-                        right: 0.w, top: 90.w, child: ProfileDropdown())
-                    : SizedBox(),
+                        right: 0.w, top: 90.w, child: const ProfileDropdown())
+                    : const SizedBox(),
               ],
             ),
           ),

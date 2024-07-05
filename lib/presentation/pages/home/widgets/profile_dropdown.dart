@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileDropdown extends StatelessWidget {
-  const ProfileDropdown({Key? key});
+  const ProfileDropdown({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class ProfileDropdown extends StatelessWidget {
         builder: (context, state) {
           return state.maybeMap(
               authenticated: (value) {
-                print(state);
-                return Container(
+                // print(state);
+                return SizedBox(
                   width: 300.w,
                   child: Column(
                     // crossAxisAlignment: CrossAxisAlignment.start,

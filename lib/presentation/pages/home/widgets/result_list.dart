@@ -12,7 +12,7 @@ class ResultList extends StatelessWidget {
       children: [
         // Header row
         Container(
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
             border: Border(
@@ -49,7 +49,7 @@ class ResultList extends StatelessWidget {
             itemBuilder: (context, index) {
               final user = users[index];
               return Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(color: Colors.grey[300]!),

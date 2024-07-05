@@ -1,6 +1,5 @@
 import 'package:cubtale_challenge/domain/core/failures.dart';
 import 'package:cubtale_challenge/domain/core/value_objects.dart';
-import 'package:cubtale_challenge/domain/core/value_validators.dart';
 import 'package:dartz/dartz.dart';
 
 class SearchTerm extends ValueObject<String> {

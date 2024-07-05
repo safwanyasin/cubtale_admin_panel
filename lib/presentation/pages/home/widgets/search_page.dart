@@ -1,7 +1,6 @@
 import 'package:cubtale_challenge/application/search/search_cubit.dart';
 import 'package:cubtale_challenge/injection.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/search_card.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

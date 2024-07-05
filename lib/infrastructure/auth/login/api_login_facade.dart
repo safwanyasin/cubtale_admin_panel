@@ -8,8 +8,6 @@ import 'package:cubtale_challenge/domain/auth/value_objects.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import './firebase_user_mapper.dart';
 
 @lazySingleton
 class ApiLoginFacade implements ILoginFacade {
@@ -26,10 +24,10 @@ class ApiLoginFacade implements ILoginFacade {
       final storedTime = DateTime.fromMillisecondsSinceEpoch(timestamp);
       final now = DateTime.now();
       if (now.difference(storedTime) <= expirationDuration) {
-        print("attempting ot get the username");
+        // print("attempting ot get the username");
         final username = prefs.getString('username');
         final password = prefs.getString('password');
-        print("the username is " + username!);
+        // print("the username is " + username!);
         return optionOf({
           'username': username,
           'password': password,
@@ -60,30 +58,23 @@ class ApiLoginFacade implements ILoginFacade {
         },
       );
       final data = jsonDecode(response.data);
-      print(response.data);
+      // print(response.data);
       if (data['error_code'] == "1099") {
         return left(const LoginFailure.invalidUsernameAndPasswordCombination());
       } else {
         final prefs = await SharedPreferences.getInstance();
-        print('setting username as ' + usernameStr);
+        // print('setting username as ' + usernameStr);
         await prefs.setString('username', usernameStr);
         await prefs.setString('password', passwordStr);
         await prefs.setInt('timestamp', DateTime.now().millisecondsSinceEpoch);
         return right(unit);
       }
     } catch (e) {
-      print(e);
+      // print(e);
       return left(const LoginFailure.serverError());
     }
   }
 
-  // @override
-  // Future<Either<ValueFailure, DocumentSnapshot>> getUser() async {
-  //   final userDoc = await FirebaseFirestore.instance.userDocument();
-  //   final user = await userDoc.get();
-  //   return right(user);
-  // }
-  // gets snapshot of the user
   @override
   Future<dynamic> getUser(String username, String password) async {
      try {
@@ -96,28 +87,17 @@ class ApiLoginFacade implements ILoginFacade {
         },
       );
       final data = jsonDecode(response.data);
-      print(response.data);
+      // print(response.data);
       return data;
     } catch (e) {
-      print(e);
+      // print(e);
       return null;
     }
-    // final userDetails = await FirebaseFirestore.instance.userDocument();
-    // final snapshot = await userDetails.get();
-    // return snapshot;
   }
 
   // signs out the user
   @override
   Future<void> signOut() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.remove('apiKey');
-    // await _firebaseAuth.signOut();
-    // await _googleSignIn.signOut();
-    // return Future.wait([
-    //   _firebaseAuth.signOut(),
-    //   _googleSignIn.signOut(),
-    // ]);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('username');
     await prefs.remove('password');

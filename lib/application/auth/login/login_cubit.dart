@@ -87,6 +87,7 @@ class LoginCubit extends Cubit<LoginState> {
                         some(left(LoginFailure.otherFailure(m))),
                   ),
                 ),
+            // ignore: avoid_print
             orElse: () => print("some unknown error occurred"));
       }, (_) => {});
     } else {

@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:auto_route/auto_route.dart';
 import 'package:cubtale_challenge/application/auth/auth_cubit.dart';
 import 'package:cubtale_challenge/application/auth/login/login_cubit.dart';
@@ -7,9 +8,7 @@ import 'package:cubtale_challenge/presentation/reusable_components/buttons/prima
 import 'package:cubtale_challenge/presentation/reusable_components/error_popup.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/input/input_field.dart';
 import 'package:cubtale_challenge/presentation/routing/router/router.dart';
-import 'package:cubtale_challenge/presentation/styles/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +28,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             const NavBar(),
-            Container(
+            SizedBox(
               height: 930.h,
               child: Center(
                 child: Container(
@@ -65,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                                   );
                                 });
                           }, (_) {
-                            print('login successful');
+                            // print('login successful');
                             context.read<AuthCubit>().authCheckRequested();
                             AutoRouter.of(context).replace(const HomeRoute());
                           }),

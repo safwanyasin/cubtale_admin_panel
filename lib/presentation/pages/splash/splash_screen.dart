@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:auto_route/auto_route.dart';
 import 'package:cubtale_challenge/application/auth/auth_cubit.dart';
 import 'package:cubtale_challenge/presentation/routing/router/router.dart';
@@ -17,7 +18,7 @@ class SplashScreen extends StatelessWidget {
           initial: (_) {},
           authenticated: (_) async {
             AutoRouter.of(context).replace(
-              HomeRoute(),
+              const HomeRoute(),
             );
           },
           unauthenticated: (_) async {

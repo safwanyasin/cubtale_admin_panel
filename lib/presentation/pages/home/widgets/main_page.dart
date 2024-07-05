@@ -1,10 +1,8 @@
-import 'package:cubtale_challenge/application/search/search_cubit.dart';
 import 'package:cubtale_challenge/domain/search/i_search_repository.dart';
 import 'package:cubtale_challenge/infrastructure/search/search_repository.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/main_page_card.dart';
 import 'package:cubtale_challenge/presentation/pages/home/widgets/result_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainPage extends StatefulWidget {
@@ -18,8 +16,8 @@ class _MainPageState extends State<MainPage> {
   late Future data;
   late Map<String, dynamic> dataItems;
   Future fetchData() async {
-    final ISearchRepository _repository = SearchRepository();
-    final result = await _repository.findByDate('04-07-2024');
+    final ISearchRepository repository = SearchRepository();
+    final result = await repository.findByDate('04-07-2024');
 
     result.fold(
       (failure) => throw Exception('Failed to fetch data'),

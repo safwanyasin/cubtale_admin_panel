@@ -1,12 +1,9 @@
-import 'package:cubtale_challenge/presentation/pages/home/widgets/profile_dropdown.dart';
-import 'package:cubtale_challenge/presentation/pages/login/widgets/theme_button.dart';
 import 'package:cubtale_challenge/presentation/reusable_components/buttons/nav_bar_button.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NavBarHome extends StatelessWidget {
-  NavBarHome({super.key});
+  const NavBarHome({super.key});
 
   @override
   Widget build(BuildContext context) {

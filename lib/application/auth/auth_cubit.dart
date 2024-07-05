@@ -31,8 +31,8 @@ class AuthCubit extends Cubit<AuthState> {
       });
       userDoc = await _loginFacade.getUser(username, password);
     }
-    print('doing authcheck');
-    print('usernm is' + username);
+    // print('doing authcheck');
+    // print('usernm is' + username);
 
     emit(userOption.fold(
       () => const AuthState.unauthenticated(),
