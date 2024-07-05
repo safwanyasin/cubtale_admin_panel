@@ -4,6 +4,7 @@ import 'package:cubtale_challenge/presentation/pages/home/widgets/main_page_card
 import 'package:cubtale_challenge/presentation/pages/home/widgets/result_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart'; // Add this import for date formatting
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -15,9 +16,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   late Future data;
   late Map<String, dynamic> dataItems;
+
   Future fetchData() async {
     final ISearchRepository repository = SearchRepository();
-    final result = await repository.findByDate('04-07-2024');
+    
+    final DateTime now = DateTime.now();
+    final String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+
+    final result = await repository.findByDate(formattedDate);
 
     result.fold(
       (failure) => throw Exception('Failed to fetch data'),
@@ -27,7 +33,6 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  // initstate
   @override
   void initState() {
     super.initState();
